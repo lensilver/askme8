@@ -22,7 +22,7 @@ class QuestionsController < ApplicationController
   # PATCH/PUT /questions/1 or /questions/1.json
   def update
     if @question.update(question_params)
-    # Если обновил вопрос, то тоже редиректим на страницу юзера
+      QuestionSave.call(@question)
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
