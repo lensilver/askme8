@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def show
     # берём вопросы у найденного юзера
-    @questions = @user.questions.order(created_at: :desc)
+    @questions = @user.questions.includes(:author).order(created_at: :desc)
 
     # Для формы нового вопроса создаём заготовку, вызывая build у результата вызова метода @user.questions.
     @new_question = @user.questions.build
