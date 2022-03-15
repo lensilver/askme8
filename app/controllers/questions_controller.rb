@@ -21,8 +21,9 @@ class QuestionsController < ApplicationController
 
   # PATCH/PUT /questions/1 or /questions/1.json
   def update
-    if @question.update(question_params)
-      QuestionSave.call(@question)
+    @question.attributes = question_params
+    
+    if QuestionSave.call(@question)
       redirect_to user_path(@question.user), notice: 'Вопрос сохранен'
     else
       render :edit
